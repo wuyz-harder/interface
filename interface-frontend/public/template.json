@@ -1,0 +1,31 @@
+{
+  "正常的开局请求": {
+    "request": {
+        "request":"INITIAL",
+        "seqno":1,
+        "parameter": {
+                    "userid" : "wuyztest",
+                    "devicesn" : "wuyzdq",
+                    "user_strength" : 5,
+                    "robot_strength" : 5,
+                    "starttime" : 1628673558,
+                    "fen" : "rkemsmekr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RKEMSMEKR"
+                }
+        },
+    "expect": {
+        "request":"INITIAL",
+        "seqno":0,
+        "parameter": {
+                    "code" : 0,
+                    "message" : "successful",
+                    "data": {
+                       "sessionid" : "{sessionid}"
+                    }
+        }
+    }
+  }
+}
+
+  
+  
+
