@@ -1,6 +1,6 @@
 <template>
-  <div class="add_button" @dragend="move" id="add2">
-      <div class="add" @click="adduser"></div>
+  <div class="add_button" @drag="move" id="add2">
+      <div class="add" @click="adduser" ></div>
   </div>
 </template>
 
@@ -11,28 +11,27 @@ export default {
            adduser(){
                this.$emit("sonadd")
            },
-            move(){
-          this.odiv= document.getElementById("add2")
-          this.odiv.style.top = parseInt(this.y - 40) + "px";
-          this.odiv.style.left = parseInt(this.x - 20) + "px";
+            move(e){
+              this.addnode.style.top = e.clientX + "px"
+              this.addnode.style.left = e.clientY + "px"
 
      },
      
         },
+        created(){
+            this.addnode = document.getElementById("add2")
+        },
+        destroyed(){
+            this.addnode = ""
+        },
         data(){
           return {
               odiv:"",
+              addnode:"",
               x:0,
               y:0
           }
-        },
-         mounted(){
-
-    document.onmousemove = event =>{
-      this.x = event.pageX
-      this.y = event.pageY
-    }
-}
+        }
 }
 </script>
 
