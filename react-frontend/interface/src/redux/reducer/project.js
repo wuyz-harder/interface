@@ -1,29 +1,27 @@
+import {get} from "../../api/api"
+import store from "../store/store"
 
-
+get("http://localhost:8888/home/get_project").then(res =>{
+    console.log(res)
+    store.dispatch({type:"LIST_PROJECT",data:res.data})
+}).catch(err=>{
+    alert(err)
+    console.log("error")
+})
 const initstate = {
-    project : [{
-        key: 1,
-        project_name: 'John',
-        maker: 32,
-        interface_number: 'New York No. 1 Lake Park',
-        description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-      },{
-        key: 2,
-        project_name: 'John',
-        maker: 32,
-        interface_number: 'New York No. 1 Lake Park',
-        description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-      }]
+    project : []
 }
 
 export const projectreduce = (state=initstate,action)=>{
     console.log(state)
     switch(action.type){
+        case "LIST_PROJECT":
+            return {project:action.data}
         case "ADD_PROJECT":
             return {...state,project:[...state.project,action.data]}
         case "DEL_PROJECT":
             return { project:state.project.filter((item,index)=>{
-                return item.key !== action.data
+                return item.id !== action.data
             })}
         default:
             return state

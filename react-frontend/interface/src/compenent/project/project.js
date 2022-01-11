@@ -11,7 +11,7 @@ import { Table,Button } from 'antd';
         {
           title: '操作',
           dataIndex: '',
-          key: 'x',
+          key: 'id',
           render: (text, record, index) => {
              return <a><Button type="link" onClick={()=>this.delete(record)}>删除</Button></a>
         }
@@ -19,8 +19,7 @@ import { Table,Button } from 'antd';
       ];
     
     delete = (record)=>{
-        this.props.del(record.key)
-        
+        this.props.del(record.id)
     } 
     // 初始化数据
     render() {
@@ -31,12 +30,12 @@ import { Table,Button } from 'antd';
                 <h2>项目总数：{this.props.project.project.length}</h2>
                 <Table
                     columns={this.columns}
+                    rowKey={record=>record.id}
                     expandable={{
                     expandedRowRender: record => <p style={{ margin: 0 }}>{record.description}</p>
                     }}
                     dataSource={this.props.project.project}
                 /> 
-                <button onClick = {()=>this.props.add()}> + </button>
             </div>
         )
     }
