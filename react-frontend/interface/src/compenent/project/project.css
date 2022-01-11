@@ -1,0 +1,9 @@
+.header{
+    background: antiquewhite !important;
+}
+.ant-table-cell{
+    text-align: center !important;
+}
+th .ant-table-cell{
+    text-align: center;
+}
