@@ -3,7 +3,7 @@ import {NavLink,Router,Route,Routes} from "react-router-dom"
 import { Menu } from 'antd';
 import Project from "../src/compenent/project/connect_project"
 import People from "../src/compenent/people/people"
-import Interface from "../src/compenent/interface/interface"
+import Interface from "../src/compenent/interface/connect_interface"
 import Log from "../src/compenent/log/log"
 import "./App.css"
 import {

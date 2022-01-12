@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import "./project.css"
 import { Table,Button } from 'antd';
 
- export default class project extends Component {
+ export default class project extends PureComponent {
 
+    // current = 1
     columns = [
         { title: '项目名', dataIndex: 'project_name', key: 'project_name' },
         { title: '发起者', dataIndex: 'maker', key: 'maker' },
@@ -31,6 +32,16 @@ import { Table,Button } from 'antd';
                 <Table
                     columns={this.columns}
                     rowKey={record=>record.id}
+                    pagination={
+                        {
+                            total:this.props.project.project.length,
+                            pageSize:8,
+                            current:1,
+                            onChange(page,pageSize){
+                                    this.current = page
+                            }
+                        }
+                    }
                     expandable={{
                     expandedRowRender: record => <p style={{ margin: 0 }}>{record.description}</p>
                     }}
