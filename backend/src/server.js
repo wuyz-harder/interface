@@ -1,17 +1,19 @@
 const express = require("express")
 var expressWs = require('express-ws');
 const bodyparse = require("body-parser")
+const morgan = require("morgan")
 const app = express()
 const port = 8888
 const jwt = require("./utils/jwt")
 expressWs(app)
+app.use(morgan("dev"))
 app.use(bodyparse.json())
 app.use(bodyparse.urlencoded({ extended: true }))
 app.all("*",(req, res, next)=>{
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Access-Control-Expose-Headers, Platform, Token, Uid,Authorization')
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS, HEAD')
-  if(req.method == "OPTIONS"){
+  if(req.method == "OPTIONS" ){
     console.log("opt")
     next()
   }
