@@ -1,7 +1,8 @@
 import {get} from "../../api/api"
 import store from "../store/store"
+const get_uri = "/interface/get_interface"
 
-get("http://localhost:8888/interface/get_interface").then(res =>{
+get(get_uri).then(res =>{
     console.log(res)
     store.dispatch({type:"LIST_INTERFACE",data:res.data})
 }).catch(err=>{
@@ -25,7 +26,7 @@ export const interfacereduce = (state=initstate,action) =>{
 
         case "DEL":
             return {interface:state.interface.filter((item,index)=>{
-                return index !==action.data
+                return item.id !==action.data
             })}
         default:
             return state

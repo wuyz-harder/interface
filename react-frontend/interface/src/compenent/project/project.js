@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import "./project.css"
-import { Table,Button } from 'antd';
+import NewForm from "../common/form"
+import { Table,Button, Input, } from 'antd';
 
  export default class project extends PureComponent {
 
@@ -14,7 +15,11 @@ import { Table,Button } from 'antd';
           dataIndex: '',
           key: 'id',
           render: (text, record, index) => {
-             return <a><Button type="link" onClick={()=>this.delete(record)}>删除</Button></a>
+             return <span>
+                 <Button type="ghost" onClick={()=>this.delete(record)}>删除</Button>
+                
+                 <Button type="primary" onClick={()=>this.delete(record)} style={{marginLeft:'5px'}}>编辑</Button>
+                 </span>
         }
         },
       ];
@@ -22,18 +27,39 @@ import { Table,Button } from 'antd';
     delete = (record)=>{
         this.props.del(record.id)
     } 
+    state = {
+        display:"none"
+    }
+    show = ()=>{
+        this.setState({
+            display:this.state.display==="none"?"block":"none"
+        })
+    }
     // 初始化数据
     render() {
         return (
-            <div>
-                  <h1>项目汇总</h1>
-                    用来展示所有的项目
-                <h2>项目总数：{this.props.project.project.length}</h2>
+            <div style={{height:"100vh"}}>
+                <div className="new" style={{display:this.state.display}}>
+                    <NewForm add={()=>this.show()}></NewForm>
+                    </div>
+                <div className="fm" style={{display:this.state.display}}> 
+                </div>
+                
+                  <h1 style={{paddingLeft:"20px"}}>项目汇总</h1>
+                    <text style={{paddingLeft:"20px"}}>用来展示所有的项目</text>
+                <h2 style={{paddingLeft:"20px"}}>项目总数：{this.props.project.project.length}  
+                <Button 
+                type="primary"
+                onClick = {()=>this.show()} 
+                style={{float:'right',right:"20px"}}>
+                    新建
+                    </Button></h2>
                 <Table
                     columns={this.columns}
                     rowKey={record=>record.id}
                     pagination={
                         {
+                            position: 'bottomRight',
                             total:this.props.project.project.length,
                             pageSize:8,
                             current:1,

@@ -14,7 +14,7 @@ add:() => { dispatch({type:"ADD_INTERFACE",data:{
   )
 },
 del:(index)=>{
-    dispatch({type:"DEL_PROJECT",data:index})
+    dispatch({type:"DEL",data:index})
 }
 })
 

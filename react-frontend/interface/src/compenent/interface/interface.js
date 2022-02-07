@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Table,Button,Pagination } from 'antd';
+import { Table,Button } from 'antd';
 
 export default class Interface extends PureComponent {
     
@@ -13,7 +13,10 @@ export default class Interface extends PureComponent {
           dataIndex: '',
           key: 'id',
           render: (text, record, index) => {
-             return <a><Button type="link" onClick={()=>this.delete(record)}>删除</Button></a>
+             return <span>
+                 <Button type="ghost" onClick={()=>this.delete(record)}>删除</Button>
+                 <Button type="primary" onClick={()=>this.delete(record)} style={{marginLeft:'5px'}}>编辑</Button>
+             </span>
         }
         },
       ];
@@ -25,6 +28,9 @@ export default class Interface extends PureComponent {
     render() {
         return (
             <div>
+                <h1>接口汇总</h1>
+                    用来展示所有的接口
+                <h2>接口总数：{this.props.interface.interface.length}</h2>
                  <Table
                     columns={this.columns}
                     rowKey={record=>record.id}
